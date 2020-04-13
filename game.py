@@ -57,6 +57,8 @@ class Game:
         self.wheel = Wheel(radius=250)
         self.puzzle = None
         self.current_player_number = 1
+        self.results_turtle = turtle.Turtle()
+        self.results_turtle.speed(0)
 
     def find_player(self, player_number):
         for player in self.players:
@@ -64,6 +66,7 @@ class Game:
                 return player
 
     def game_results(self):
+        self.render_game_results()
         for player in self.players:
             print("Player {0}: {1} - ${2}".format(player.player_number, player.name, player.money))
     
@@ -172,6 +175,16 @@ class Game:
                     self.next_player()
         print("\nFinal Results")
         self.game_results()
+
+    def render_game_results(self):
+        x_pos, y_pos = 400, 350
+        self.results_turtle.reset()
+        self.results_turtle.penup()
+        self.results_turtle.color("black")
+        for player in self.players:
+            self.results_turtle.goto(x_pos,y_pos)
+            self.results_turtle.write("Player {0}: {1} - ${2}".format(player.player_number, player.name, player.money), font=(FONT, 20, 'bold'))
+            y_pos -= 30
 
     def setup(self):
         print("\nPlayers, please enter your name.\n")
