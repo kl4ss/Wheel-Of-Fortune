@@ -49,6 +49,9 @@ def display_title():
     title.write("WHEEL OF FORTUNE", align="center", font=(FONT, 30, "bold"))
     title.hideturtle()
 
+def timeout():
+    print('Times up! You lost your turn.')
+
 
 # Objects For Wheel Of Fortune
 class Game:
@@ -107,7 +110,7 @@ class Game:
                 self.next_player()
             else:
                 print("${}".format(outcome))
-                timer = Timer(10.0, print, ['Times up! You lost your turn.'])
+                timer = Timer(interval=10.0, function=timeout)
                 timer.start()
                 letter = ""
                 valid_input = False
